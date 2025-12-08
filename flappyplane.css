@@ -1,9 +1,18 @@
 body {
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    touch-action: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 #board {
     /* background-color: skyblue; */
     background-image: url("./flapbg.png");
+    touch-action: none;
+    cursor: pointer;
 }
