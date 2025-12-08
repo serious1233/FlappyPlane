@@ -111,10 +111,10 @@ function update() {
             gameOverSound.currentTime = 0;
             gameOverSound.play();
             soundPlaying = true;
-            setTimeout(() => {
-                gameOverSound.pause();
+            // 等待音效播放完成
+            gameOverSound.onended = function() {
                 soundPlaying = false;
-            }, 2500);
+            };
         }
         gameOver = true;
     }
@@ -142,10 +142,10 @@ function update() {
                 gameOverSound.currentTime = 0;
                 gameOverSound.play();
                 soundPlaying = true;
-                setTimeout(() => {
-                    gameOverSound.pause();
+                // 等待音效播放完成
+                gameOverSound.onended = function() {
                     soundPlaying = false;
-                }, 1500);
+                };
             }
             gameOver = true;
         }
@@ -236,4 +236,3 @@ function detectCollision(a, b) {
            a.y + marginY < b.y + b.height &&
            a.y + a.height - marginY > b.y;
 }
-
