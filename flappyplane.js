@@ -75,11 +75,16 @@ window.onload = function() {
     board.addEventListener("touchstart", function(e) {
         e.preventDefault();
         handleInput();
-    });
+    }, { passive: false });
     board.addEventListener("mousedown", function(e) {
         e.preventDefault();
         handleInput();
     });
+    // 也監聽整個文件
+    document.addEventListener("touchstart", function(e) {
+        e.preventDefault();
+        handleInput();
+    }, { passive: false });
 }
 
 function update() {
