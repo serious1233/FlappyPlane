@@ -70,6 +70,9 @@ window.onload = function() {
     gameOverSound = new Audio();
     gameOverSound.src = "./Voicy_Allahu Akbar!!!!!!!.mp3";
 
+    // 只在初始化時設置一次計時器
+    towerInterval = setInterval(placeTowers, 1500);
+
     this.requestAnimationFrame(update);
     document.addEventListener("keydown", movePlane);
     // 新增觸控支援 - 直接監聽 board
@@ -210,22 +213,12 @@ function handleInput() {
         score = 0;
         gameOver = false;
         gameStarted = false;
-        // 清除舊的計時器
-        if (towerInterval) {
-            clearInterval(towerInterval);
-            towerInterval = null;
-        }
         return; // 重置後不執行其他操作
     }
     
-    // 開始遊戲（只在第一次按鍵時設置計時器）
+    // 開始遊戲
     if (!gameStarted) {
         gameStarted = true;
-        // 確保沒有重複的計時器
-        if (towerInterval) {
-            clearInterval(towerInterval);
-        }
-        towerInterval = setInterval(placeTowers, 1500); // 每 1.5 秒生成大樓
     }
     
     // move plane up (只在遊戲進行中才能飛)
