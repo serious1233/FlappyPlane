@@ -145,7 +145,7 @@ function update() {
                 setTimeout(() => {
                     gameOverSound.pause();
                     soundPlaying = false;
-                }, 2000);
+                }, 3000);
             }
             gameOver = true;
         }
@@ -236,5 +236,6 @@ function detectCollision(a, b) {
            a.y + marginY < b.y + b.height &&
            a.y + a.height - marginY > b.y;
 }
+
 
 
