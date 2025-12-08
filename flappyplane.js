@@ -142,7 +142,7 @@ function update() {
                 setTimeout(() => {
                     gameOverSound.pause();
                     soundPlaying = false;
-                }, 1500);
+                }, 1200);
             }
             gameOver = true;
         }
@@ -205,6 +205,7 @@ function handleInput() {
     // reset game (只有在音效播放完成後才允許重新開始)
     if (gameOver && !soundPlaying) {
         plane.y = planeY;
+        velocityY = 0; // 重置飛機速度
         towerArray = [];
         score = 0;
         gameOver = false;
