@@ -184,7 +184,8 @@ function placeTowers() {
 }
 
 function movePlane(e) {
-    if (e.code == "ArrowUp" || e.code == "Space"|| e.code == "KeyW") {
+    // 支援鍵盤、觸控和點擊
+    if (e.code == "ArrowUp" || e.code == "Space" || e.code == "KeyW" || e.type == "touchstart" || e.type == "click") {
         // 開始遊戲
         if (!gameStarted) {
             gameStarted = true;
