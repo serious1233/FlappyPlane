@@ -68,7 +68,7 @@ window.onload = function() {
 
     // 載入遊戲結束音效
     gameOverSound = new Audio();
-    gameOverSound.src = "./Voicy_Allahu Akbar!!!!!!!.mp3?v=" + Date.now();
+    gameOverSound.src = "./Voicy_Allahu Akbar!!!!!!!.mp3";
 
     // 只在初始化時設置一次計時器
     towerInterval = setInterval(placeTowers, 1500);
