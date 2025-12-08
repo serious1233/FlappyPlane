@@ -202,19 +202,6 @@ function movePlane(e) {
 }
 
 function handleInput() {
-    // 開始遊戲
-    if (!gameStarted) {
-        gameStarted = true;
-        // 清除舊的計時器（如果存在）
-        if (towerInterval) {
-            clearInterval(towerInterval);
-        }
-        towerInterval = setInterval(placeTowers, 1500); // 每 1.5 秒生成大樓
-    }
-    
-    // move plane up
-    velocityY = -6;
-
     // reset game (只有在音效播放完成後才允許重新開始)
     if (gameOver && !soundPlaying) {
         plane.y = planeY;
@@ -222,6 +209,27 @@ function handleInput() {
         score = 0;
         gameOver = false;
         gameStarted = false;
+        // 清除舊的計時器
+        if (towerInterval) {
+            clearInterval(towerInterval);
+            towerInterval = null;
+        }
+        return; // 重置後不執行其他操作
+    }
+    
+    // 開始遊戲（只在第一次按鍵時設置計時器）
+    if (!gameStarted) {
+        gameStarted = true;
+        // 確保沒有重複的計時器
+        if (towerInterval) {
+            clearInterval(towerInterval);
+        }
+        towerInterval = setInterval(placeTowers, 1500); // 每 1.5 秒生成大樓
+    }
+    
+    // move plane up (只在遊戲進行中才能飛)
+    if (!gameOver) {
+        velocityY = -6;
     }
 }
 
