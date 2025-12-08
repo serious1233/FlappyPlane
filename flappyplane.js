@@ -40,6 +40,7 @@ let score = 0;
 let gameStarted = false; // 遊戲是否已開始
 let gameOverSound; // 遊戲結束音效
 let soundPlaying = false; // 音效是否正在播放
+let towerInterval = null; // 大樓生成計時器
 
 
 window.onload = function() {
@@ -204,7 +205,11 @@ function handleInput() {
     // 開始遊戲
     if (!gameStarted) {
         gameStarted = true;
-        setInterval(placeTowers, 1500); // 每 1.5 秒生成大樓
+        // 清除舊的計時器（如果存在）
+        if (towerInterval) {
+            clearInterval(towerInterval);
+        }
+        towerInterval = setInterval(placeTowers, 1500); // 每 1.5 秒生成大樓
     }
     
     // move plane up
