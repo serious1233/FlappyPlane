@@ -228,11 +228,12 @@ function handleInput() {
 }
 
 function detectCollision(a, b) {
-    // 增加容錯空間，只檢測實際的飛機主體部分
-    let marginX = 15; // 左右容錯值
-    let marginY = 10; // 上下容錯值
-    return a.x + marginX < b.x + b.width &&
-           a.x + a.width - marginX > b.x &&
-           a.y + marginY < b.y + b.height &&
-           a.y + a.height - marginY > b.y;
+    // 增加更大的容錯空間，只檢測實際圖片內容部分
+    // 飛機圖片周圍有透明區域，需要更大的邊距
+    let marginX = 25; // 左右容錯值（增加）
+    let marginY = 15; // 上下容錯值（增加）
+    return a.x + marginX < b.x + b.width - marginX &&
+           a.x + a.width - marginX > b.x + marginX &&
+           a.y + marginY < b.y + b.height - marginY &&
+           a.y + a.height - marginY > b.y + marginY;
 }
