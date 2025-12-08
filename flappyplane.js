@@ -68,7 +68,7 @@ window.onload = function() {
 
     // 載入遊戲結束音效
     gameOverSound = new Audio();
-    gameOverSound.src = "./Voicy_Allahu Akbar!!!!!!!.mp3";
+    gameOverSound.src = "./Voicy_Allahu Akbar!!!!!!!.mp3?v=" + Date.now();
 
     // 只在初始化時設置一次計時器
     towerInterval = setInterval(placeTowers, 1500);
@@ -145,7 +145,7 @@ function update() {
                 setTimeout(() => {
                     gameOverSound.pause();
                     soundPlaying = false;
-                }, 3000);
+                }, 1500);
             }
             gameOver = true;
         }
@@ -236,6 +236,3 @@ function detectCollision(a, b) {
            a.y + marginY < b.y + b.height &&
            a.y + a.height - marginY > b.y;
 }
-
-
-
