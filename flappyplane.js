@@ -70,10 +70,16 @@ window.onload = function() {
     gameOverSound.src = "./Voicy_Allahu Akbar!!!!!!!.mp3";
 
     this.requestAnimationFrame(update);
-    this.document.addEventListener("keydown", movePlane);
-    // 新增觸控支援
-    board.addEventListener("touchstart", handleTouch);
-    board.addEventListener("click", handleTouch);
+    document.addEventListener("keydown", movePlane);
+    // 新增觸控支援 - 直接監聽 board
+    board.addEventListener("touchstart", function(e) {
+        e.preventDefault();
+        handleInput();
+    });
+    board.addEventListener("mousedown", function(e) {
+        e.preventDefault();
+        handleInput();
+    });
 }
 
 function update() {
@@ -185,29 +191,11 @@ function placeTowers() {
 
 function movePlane(e) {
     if (e.code == "ArrowUp" || e.code == "Space" || e.code == "KeyW") {
-        // 開始遊戲
-        if (!gameStarted) {
-            gameStarted = true;
-            setInterval(placeTowers, 1500); // 每 1.5 秒生成大樓
-        }
-        
-        // move plane up
-        velocityY = -6;
-
-        // reset game (只有在音效播放完成後才允許重新開始)
-        if (gameOver && !soundPlaying) {
-            plane.y = planeY;
-            towerArray = [];
-            score = 0;
-            gameOver = false;
-            gameStarted = false;
-        }
+        handleInput();
     }
 }
 
-function handleTouch(e) {
-    e.preventDefault(); // 防止預設行為
-    
+function handleInput() {
     // 開始遊戲
     if (!gameStarted) {
         gameStarted = true;
