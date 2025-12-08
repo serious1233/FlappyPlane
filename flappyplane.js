@@ -114,7 +114,7 @@ function update() {
             setTimeout(() => {
                 gameOverSound.pause();
                 soundPlaying = false;
-            }, 1200);
+            }, 1500);
         }
         gameOver = true;
     }
@@ -145,7 +145,7 @@ function update() {
                 setTimeout(() => {
                     gameOverSound.pause();
                     soundPlaying = false;
-                }, 1200);
+                }, 1500);
             }
             gameOver = true;
         }
