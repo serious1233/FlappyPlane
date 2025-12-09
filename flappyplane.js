@@ -169,16 +169,24 @@ function placeTowers() {
     if (gameOver || !gameStarted) {
         return;
     }
-    //(0-1) * towerHight/2
-    // 0 -> -128 (towerHight/4)
-    // 1 -> -384 (3*towerHight/4)
-    let randomTowerY = towerY - towerHight/4 - Math.random() * (towerHight/2);
-    let openingSpace = board.height/4;
+    let openingSpace = board.height/5; // 空隙寬度128px
+    
+    // 上方大樓Y位置範圍：讓通道有高低變化
+    // 通道頂部應該在 100px 到 400px 之間
+    let minGapTop = 100;
+    let maxGapTop = 400;
+    let gapTop = minGapTop + Math.random() * (maxGapTop - minGapTop);
+    
+    // 上方大樓底部對齊通道頂部
+    let topTowerY = gapTop - towerHight;
+    
+    // 下方大樓頂部對齊通道底部
+    let bottomTowerY = gapTop + openingSpace;
 
     let topTower = {
         img : TopTowerimg,
         x : towerX,
-        y : randomTowerY,
+        y : topTowerY,
         width : towerWidth,
         height : towerHight,
         passed : false
@@ -189,7 +197,7 @@ function placeTowers() {
     let bottomTower = {
         img : BottomTowerimg,
         x : towerX,
-        y : randomTowerY + towerHight + openingSpace,
+        y : bottomTowerY,
         width : towerWidth,
         height : towerHight,
         passed : false
